@@ -10,8 +10,3 @@ numpydoc==0.8.0
 gunicorn==20.0.4
 Werkzeug==1.0.1
 WTForms==2.3.3
-
-coverage==4.0.1
-flipflop==1.0
-pytz==2015.6
-speaklater==1.3
