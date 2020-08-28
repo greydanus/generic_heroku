@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h1><b>Generic Heroku App</b>: A project template by Sam Greydanus</h1>
+
+<br>
+
+<div class="sechighlight">
+<div class="container sec">
+  <h2>Overview</h2>
+  <div id="coursedesc">
+    A three sentence summary of the project goes here. This particular webpage is just a template and you should fill with your own project-specific content. Best of luck.
+  </div>
+</div>
+</div>
+
+<div class="project_demo" style="display: block; margin-left: auto; margin-right: auto; width:400px">
+    <div style="text-align:left;">
+        <h4>Enter some text:</h4>
+        <form action="" method="post" name="login" style="padding-left: 20px;">
+            {{ form.hidden_tag() }}
+            {{ form.string_field(size=40) }}
+            <!-- <input type="submit" value="Go" style="display: inline-block;"> -->
+        </form>
+
+        <h4>You entered:</h4>
+
+        {% if text != None %}
+        <div style="padding-left: 20px;">
+            <p>"{{text}}"<p>
+        </div>
+
+        {% endif %}
+    </div>
+</div>
+
+<div class="maintext">
+
+    <h3> How it works </h3>
+
+    <p>
+        You can explain your project here. Sometimes it helps to write some math to make yourself look smarter. For example, you could include the quadratic equation, which is \(ax^2 + bx + c = 0\). If you want to take your explanation even futher, you can include some code:
+    </p>
+
+    <div class="highlight">
+        <pre><code class="language-python" data-lang="python">
+            <span class="n">import numpy as np</span>
+            <span class="n">print("Hello world")</span>
+        </code></pre>
+    </div>
+    <p>
+        You can end your demo with some pithy comments about the structure of reality, the meaning of existence, and the importance of individual agency.
+    </p>
+</div>
+
+<div class="sechighlight">
+<div id="footer">
+Finished August 28, 2020
+</div>
+</div>
+
+{% endblock %}

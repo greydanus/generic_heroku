@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" hola_ext_inject="disabled"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="shortcut icon" href="/static/spongebob.ico">
+  <title>Generic Heroku App</title>
+
+  <!-- bootstrap -->
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/bootstrap-theme.min.css">
+
+  <!--math notation-->
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <!-- stylesheet -->
+  <link rel="stylesheet" type="text/css" href="/static/style.css">
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+      <div class="span12">
+        {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>   
+  </body>
+
+</html>
