@@ -5,10 +5,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired
 
-# from transformers import BertTokenizer, BertModel
 from transformers import DistilBertTokenizer, DistilBertModel
 
-# from model_funcs import *
+from model_funcs import *
 
 '''
 We load the model at the top of the app. 
@@ -24,6 +23,7 @@ model = DistilBertModel.from_pretrained('distilbert-base-uncased',
 
 # Put the model in "evaluation" mode, meaning feed-forward operation.
 model.eval()
+
 
 class TextForm(FlaskForm):
     string_field = StringField('text_field', validators=[DataRequired()])
