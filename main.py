@@ -7,7 +7,7 @@ from wtforms.validators import DataRequired
 
 from transformers import DistilBertTokenizer, DistilBertModel
 
-# from model_funcs import *
+from model_funcs import *
 
 '''
 We load the model at the top of the app. 
