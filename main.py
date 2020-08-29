@@ -39,6 +39,7 @@ def index():
 
     if text_form.validate_on_submit():
         text = text_form.string_field.data
+        list_of_embeddings = generate_word_embeddings(model, tokenizer, text)
 
     return render_template('index.html', form=text_form, text=text)
     # return render_template('index.html')
