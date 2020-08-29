@@ -5,9 +5,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired
 
-from transformers import BertTokenizer, BertModel
+# from transformers import BertTokenizer, BertModel
 
-from model_funcs import *
+# from model_funcs import *
 
 '''
 We load the model at the top of the app. 
