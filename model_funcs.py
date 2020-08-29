@@ -4,6 +4,7 @@ import numpy as np
 
 import mobypy
 
+
 def generate_word_embeddings(model, tokenizer, text):
     '''
     Given a BERT model and tokenizer, this function tokenizes the 'text' string
