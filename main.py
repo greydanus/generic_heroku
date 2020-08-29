@@ -15,14 +15,14 @@ This means it will only get loaded into memory once on the server when we
 deploy it, rather than being loaded every time we want to make a prediction.
 '''
 
-# tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
-# model = BertModel.from_pretrained('bert-base-uncased',
-# 								  output_hidden_states = True, # Whether the model returns all hidden-states.
-# 								  )
+model = BertModel.from_pretrained('bert-base-uncased',
+								  output_hidden_states = True, # Whether the model returns all hidden-states.
+								  )
 
-# # Put the model in "evaluation" mode, meaning feed-forward operation.
-# model.eval()
+# Put the model in "evaluation" mode, meaning feed-forward operation.
+model.eval()
 
 
 class TextForm(FlaskForm):
