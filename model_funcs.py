@@ -52,6 +52,9 @@ def sum_layer_dimension(token_embeddings):
 def dist(x, y):
     return nn.CosineSimilarity()(x, y).detach().item()
 
+def get_unranked_synonyms(word):
+    return mobypy.synonyms(word)
+
 
 def get_ranked_synonyms(model, tokenizer, sentence, word):
     sentence_embedding = generate_word_embeddings(model, tokenizer, sentence, emb_type='cls')

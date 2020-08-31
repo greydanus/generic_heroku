@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<h1><b>Generic Heroku App</b>: A project template by Sam Greydanus</h1>
+<h1>The Deep Thesaurus</h1>
 
 <br>
 
@@ -11,34 +11,31 @@
 <div class="container sec">
   <h2>Overview</h2>
   <div id="coursedesc">
-    A three sentence summary of the project goes here. This particular webpage is just a template and you should fill with your own project-specific content. Best of luck!
+    I could say "You are pretty great" or "You are pretty and great" and the word <i>pretty</i> would mean different things based on the context. Now, your average thesaurus would recommend the same set of synonyms regardless of context. This is a bit silly. To make your life incrementally better, we propose a <i>deep thesaurus</i> which uses a deep learning model to ranks synonyms based on the context of the word they are supposed to replace. Enjoy!
   </div>
 </div>
 </div>
 
-<div class="project_demo" style="display: block; margin-left: auto; margin-right: auto; width:400px">
+<div class="project_demo" style="display: block; margin-left: auto; margin-right: auto; width:600px">
     <div style="text-align:left;">
-        <h4>Enter some text:</h4>
+
+        <h4>Thesaurus demo:</h4>
         <form action="" method="post" name="login" style="padding-left: 20px;">
-            {{ form.hidden_tag() }}
-            {{ form.string_field(size=40) }}
-            <!-- <input type="submit" value="Go" style="display: inline-block;"> -->
+            {{ thesaurus_input.hidden_tag() }}
+            {{ thesaurus_input.sentence.label }} {{ thesaurus_input.sentence(size=40) }}
+            <br>
+            {{ thesaurus_input.word.label }} {{ thesaurus_input.word(size=12) }}
+            <br>
+            <input type="submit" value="Go">
         </form>
 
-        <h4>You entered:</h4>
-
-        {% if text != None %}
-        <div style="padding-left: 20px;">
-            <p>"{{text}}"<p>
-        </div>
-        {% endif %}
-
         <h4>Top synonyms:</h4>
-        {% if synonym != None %}
+        {% if synonyms != None %}
         <div style="padding-left: 20px;">
-            <p>"{{synonym}}"<p>
+            <p>"{{synonyms}}"<p>
         </div>
         {% endif %}
+
     </div>
 </div>
 
@@ -47,7 +44,7 @@
     <h3> How it works </h3>
 
     <p>
-        You can explain your project here. Sometimes it helps to write some math to make yourself look smarter. For example, you could include the quadratic equation, which is \(ax^2 + bx + c = 0\). If you want to take your explanation even futher, you can include some code:
+        We will write a more thorough explanation of our project here. In order to make ourselves seem smart, precise, and trustworthy we can use some math in our explanation. Perhaps the quadratic formula will do. It is \(ax^2 + bx + c = 0\). We could even write some pseudocode so as to seem both relatable and technically sound.
     </p>
 
     <div class="highlight">
@@ -57,7 +54,7 @@
         </code></pre>
     </div>
     <p>
-        You can end your demo with some pithy comments about the structure of reality, the meaning of existence, and the dignity of the individual.
+        We can end our demo with some pithy comments about the structure of reality, the meaning of existence, and the dignity of the individual.
     </p>
 </div>
 
