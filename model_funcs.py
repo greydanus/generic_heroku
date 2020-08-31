@@ -23,7 +23,8 @@ def generate_word_embeddings(model, tokenizer, text, emb_type='cls'):
     tokens_tensor = torch.tensor([indexed_tokens])
     segments_tensors = torch.tensor([segments_ids])
 
-    outputs = model(tokens_tensor, segments_tensors)
+    with torch.no_grad():
+        outputs = model(tokens_tensor, segments_tensors)
     if emb_type == 'cls':
         return outputs[0][:, 0]
     elif emb_type == 'hidden':
