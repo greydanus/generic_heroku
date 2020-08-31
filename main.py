@@ -35,7 +35,7 @@ model.eval()
 
 
 class ThesaurusInput(FlaskForm):
-    sentence = StringField('Your sentence: ', default="You are pretty", validators=[DataRequired()])
+    sentence = StringField('Your sentence: ', default="You are pretty great", validators=[DataRequired()])
     word = StringField('The word you want to replace: ', default="pretty", validators=[DataRequired()])
     use_deep = BooleanField('Deep thesaurus enabled: ', default="checked")
 
@@ -76,3 +76,4 @@ def submit():
 
 if __name__ == '__main__':
     app.run(debug=True)  # port=os.getenv('PORT',5000)
+
