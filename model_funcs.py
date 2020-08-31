@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import numpy as np
+import random
 
 import mobypy
 
@@ -53,7 +54,10 @@ def dist(x, y):
     return nn.CosineSimilarity()(x, y).detach().item()
 
 def get_unranked_synonyms(word):
-    return mobypy.synonyms(word)
+    synonyms = mobypy.synonyms(word)
+    # random.seed(0)
+    random.shuffle(synonyms)  # use stochastic random order (default is alphabetical)
+    return synonyms
 
 
 def get_ranked_synonyms(model, tokenizer, sentence, word):
@@ -69,4 +73,4 @@ def get_ranked_synonyms(model, tokenizer, sentence, word):
     ranked_scores = scores[ranking]
     ranked_synonyms = [synonyms[i] for i in ranking]
 
-    return ','.join(ranked_synonyms[:5]), ranked_scores
+    return ranked_synonyms, ranked_scores

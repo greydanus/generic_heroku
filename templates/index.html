@@ -3,7 +3,10 @@
 
 {% block content %}
 
-<h1>The Deep Thesaurus</h1>
+<h1>The Deep Thesaurus
+<!--     <img src="/static/books.png" alt="" style="max-width: 40px"> -->
+</h1>
+<h4 style='text-align:center; font-size: 15px'>Eric Frank, Xinyu Hu, and Sam Greydanus</h4>
 
 <br>
 
@@ -20,19 +23,28 @@
     <div style="text-align:left;">
 
         <h4>Thesaurus demo:</h4>
-        <form action="" method="post" name="login" style="padding-left: 20px;">
+        <form action="/submit" method="post" name="login" style="padding-left: 20px;">
             {{ thesaurus_input.hidden_tag() }}
             {{ thesaurus_input.sentence.label }} {{ thesaurus_input.sentence(size=40) }}
             <br>
             {{ thesaurus_input.word.label }} {{ thesaurus_input.word(size=12) }}
             <br>
+            {{ thesaurus_input.use_deep.label }} {{ thesaurus_input.use_deep() }}
+            <br>
             <input type="submit" value="Go">
         </form>
 
-        <h4>Top synonyms:</h4>
-        {% if synonyms != None %}
+        {% if deep_synonyms != None %}
+        <h4>Deep thesaurus:</h4>
         <div style="padding-left: 20px;">
-            <p>"{{synonyms}}"<p>
+            <p>"{{deep_synonyms}}"<p>
+        </div>
+        {% endif %}
+
+        {% if reg_synonyms != None %}
+        <h4>Regular thesaurus:</h4>
+        <div style="padding-left: 20px;">
+            <p>"{{reg_synonyms}}"<p>
         </div>
         {% endif %}
 
@@ -44,7 +56,7 @@
     <h3> How it works </h3>
 
     <p>
-        We will write a more thorough explanation of our project here. In order to make ourselves seem smart, precise, and trustworthy we can use some math in our explanation. Perhaps the quadratic formula will do. It is \(ax^2 + bx + c = 0\). We could even write some pseudocode so as to seem both relatable and technically sound.
+        We will write a more thorough explanation of our project here. In order to make ourselves seem smart, precise, and trustworthy we can use some math in our explanation. Perhaps the quadratic formula will do. It is \(ax^2 + bx + c = 0\). We could even write some pseudocode in order to seem both relatable and technically sound.
     </p>
 
     <div class="highlight">
