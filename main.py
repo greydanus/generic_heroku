@@ -13,7 +13,6 @@ from wtforms import StringField, BooleanField
 from wtforms.validators import DataRequired
 
 import torch
-from transformers import DistilBertTokenizer, DistilBertModel
 
 from model_funcs import *
 
@@ -23,14 +22,20 @@ This means it will only get loaded into memory once on the server when we
 deploy it, rather than being loaded every time we want to make a prediction.
 '''
 
-tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
+from transformers import AutoTokenizer, AutoModel
+# See https://huggingface.co/google/bert_uncased_L-10_H-512_A-8
+# Load the largest BERT-like model that will fit on a free heroku instance
+tokenizer = AutoTokenizer.from_pretrained("google/bert_uncased_L-8_H-512_A-8")
+model = AutoModel.from_pretrained("google/bert_uncased_L-8_H-512_A-8")
 
-model = DistilBertModel.from_pretrained('distilbert-base-uncased',
-                                        # Whether the model returns all hidden-states.
-                                        output_hidden_states=True,
-                                        )
+# from transformers import DistilBertTokenizer, DistilBertModel
+# tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
+# model = DistilBertModel.from_pretrained('distilbert-base-uncased',
+#                                         # Whether the model returns all hidden-states.
+#                                         output_hidden_states=True,
+#                                         )
 
-# Put the model in "evaluation" mode, meaning feed-forward operation.
+# # Put the model in "evaluation" mode, meaning feed-forward operation.
 model.eval()
 
 
@@ -76,4 +81,7 @@ def submit():
 
 if __name__ == '__main__':
     app.run(debug=True)  # port=os.getenv('PORT',5000)
+
+
+    
 

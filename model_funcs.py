@@ -62,13 +62,12 @@ def get_unranked_synonyms(word):
 
 
 def get_ranked_synonyms(model, tokenizer, sentence, word):
-    sentence_embedding = generate_word_embeddings(model, tokenizer, sentence, emb_type='cls')
+    sentence_embedding = generate_word_embeddings(model, tokenizer, sentence, emb_type='hidden')
     synonyms = mobypy.synonyms(word)
     scores = np.zeros((len(synonyms)))
     for i, synonym in enumerate(synonyms):
-        print('Running synonym #{}'.format(i))
         candidate = sentence.replace(word, synonym)
-        candidate_embedding = generate_word_embeddings(model, tokenizer, candidate, emb_type='cls')
+        candidate_embedding = generate_word_embeddings(model, tokenizer, candidate, emb_type='hidden')
         scores[i] = dist(sentence_embedding, candidate_embedding)
 
     ranking = np.argsort(scores)[::-1]
