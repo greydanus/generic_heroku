@@ -64,11 +64,10 @@ def get_unranked_synonyms(word):
 def get_ranked_synonyms(model, tokenizer, sentence, word):
     sentence_embedding = generate_word_embeddings(model, tokenizer, sentence, emb_type='cls')
     synonyms = mobypy.synonyms(word)
-    k = 1 # too much latency if we sort whole list; 
+    k = -1 # too much latency if we sort whole list; 
     # long term: https://stackoverflow.com/questions/21749396/how-to-change-default-request-time-out-on-heroku
     scores = np.zeros((len(synonyms)))
     for i, synonym in enumerate(synonyms[:k]):
-        print("Hello world")
         candidate = sentence.replace(word, synonym)
         candidate_embedding = generate_word_embeddings(model, tokenizer, candidate, emb_type='cls')
         scores[i] = dist(sentence_embedding, candidate_embedding)
