@@ -39,16 +39,8 @@ class ThesaurusInput(FlaskForm):
     word = StringField('The word you want to replace: ', default="pretty", validators=[DataRequired()])
     use_deep = BooleanField('Deep thesaurus enabled: ', default="checked")
 
-
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
-def index():
-    thesaurus_input = ThesaurusInput()
-    return render_template('index.html', thesaurus_input=thesaurus_input,
-                                        reg_synonyms=None,
-                                        deep_synonyms=None)
-
-@app.route('/submit', methods=['GET', 'POST'])
 def submit():
     thesaurus_input = ThesaurusInput()
     reg_synonyms_str = deep_synonyms_str = None
