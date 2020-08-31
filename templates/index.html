@@ -54,6 +54,12 @@
 
 <div class="maintext">
 
+    <h3> Technical note </h3>
+
+    <p>
+        In order to fit our server in the 500 MB limit imposed by our free Heroku dyno, we are using <a href="https://huggingface.co/google/bert_uncased_L-8_H-512_A-8">Medium-BERT</a> to rank sentences. Qualitatively, we noticed that BERT and DistilBert both produce better rankings. In the future we hope to figure out how to rank with these models. Our DistilBERT server takes up 600 MB, so with a few clever tricks we may be able to get it running here soon.
+    </p>
+
     <h3> How it works </h3>
 
     <p>
