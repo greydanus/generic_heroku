@@ -31,7 +31,13 @@
         <div style="padding-left: 20px;">
             <p>"{{text}}"<p>
         </div>
+        {% endif %}
 
+        <h4>Top synonyms:</h4>
+        {% if synonym != None %}
+        <div style="padding-left: 20px;">
+            <p>"{{synonym}}"<p>
+        </div>
         {% endif %}
     </div>
 </div>
