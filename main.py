@@ -25,8 +25,9 @@ deploy it, rather than being loaded every time we want to make a prediction.
 from transformers import AutoTokenizer, AutoModel
 # See https://huggingface.co/google/bert_uncased_L-10_H-512_A-8
 # Load the largest BERT-like model that will fit on a free heroku instance
-tokenizer = AutoTokenizer.from_pretrained("google/bert_uncased_L-8_H-512_A-8")
-model = AutoModel.from_pretrained("google/bert_uncased_L-8_H-512_A-8")
+model_name = "google/bert_uncased_L-2_H-128_A-2"  # "google/bert_uncased_L-8_H-512_A-8"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModel.from_pretrained(model_name)
 
 # from transformers import DistilBertTokenizer, DistilBertModel
 # tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
