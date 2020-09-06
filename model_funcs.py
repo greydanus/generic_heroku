@@ -60,20 +60,29 @@ def get_unranked_synonyms(word):
     random.shuffle(synonyms)  # use stochastic random order (default is alphabetical)
     return synonyms
 
-
 def get_ranked_synonyms(model, tokenizer, sentence, word):
+    sentence = "Hello"
     sentence_embedding = generate_word_embeddings(model, tokenizer, sentence, emb_type='cls')
-    synonyms = mobypy.synonyms(word)
-    k = -1 # too much latency if we sort whole list; 
-    # long term: https://stackoverflow.com/questions/21749396/how-to-change-default-request-time-out-on-heroku
-    scores = np.zeros((len(synonyms)))
-    for i, synonym in enumerate(synonyms[:k]):
-        candidate = sentence.replace(word, synonym)
-        candidate_embedding = generate_word_embeddings(model, tokenizer, candidate, emb_type='cls')
-        scores[i] = dist(sentence_embedding, candidate_embedding)
+    print('embedding sum was', sentence_embedding.sum().item())
 
-    ranking = np.argsort(scores)[::-1]
-    ranked_scores = scores[ranking]
-    ranked_synonyms = [synonyms[i] for i in ranking]
+    ranked_synonyms = get_unranked_synonyms('hello')
+    ranked_scores = np.zeros((len(ranked_synonyms)))
+    return ranked_synonyms, ranked_scores
 
-    return ranked_synonyms[:k], ranked_scores[:k]
+
+# def get_ranked_synonyms(model, tokenizer, sentence, word):
+#     sentence_embedding = generate_word_embeddings(model, tokenizer, sentence, emb_type='cls')
+#     synonyms = mobypy.synonyms(word)
+#     k = -1 # too much latency if we sort whole list; 
+#     # long term: https://stackoverflow.com/questions/21749396/how-to-change-default-request-time-out-on-heroku
+#     scores = np.zeros((len(synonyms)))
+#     for i, synonym in enumerate(synonyms[:k]):
+#         candidate = sentence.replace(word, synonym)
+#         candidate_embedding = generate_word_embeddings(model, tokenizer, candidate, emb_type='cls')
+#         scores[i] = dist(sentence_embedding, candidate_embedding)
+
+#     ranking = np.argsort(scores)[::-1]
+#     ranked_scores = scores[ranking]
+#     ranked_synonyms = [synonyms[i] for i in ranking]
+
+#     return ranked_synonyms[:k], ranked_scores[:k]
