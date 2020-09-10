@@ -16,6 +16,10 @@ import torch
 
 from model_funcs import *
 
+print("Starting to run SVD")
+# answer = torch.svd(torch.rand(10,10))
+print("Finished running SVD")
+
 '''
 We load the model at the top of the app.
 This means it will only get loaded into memory once on the server when we
