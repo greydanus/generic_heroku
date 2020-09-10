@@ -17,7 +17,7 @@ import torch
 from model_funcs import *
 
 print("Starting to run SVD")
-# answer = torch.svd(torch.rand(10,10))
+answer = torch.svd(torch.rand(10,10))
 print("Finished running SVD")
 
 '''
