@@ -16,10 +16,6 @@ import torch
 
 from model_funcs import *
 
-print("Starting to run SVD")
-answer = torch.svd(torch.rand(10,10))
-print("Finished running SVD")
-
 '''
 We load the model at the top of the app.
 This means it will only get loaded into memory once on the server when we
@@ -54,6 +50,10 @@ class ThesaurusInput(FlaskForm):
 def submit():
     thesaurus_input = ThesaurusInput()
     reg_synonyms_str = deep_synonyms_str = None
+
+    print("Starting to run SVD")
+    answer = torch.svd(torch.rand(10,10))
+    print("Finished running SVD")
 
     if thesaurus_input.validate_on_submit():
         word = thesaurus_input.word.data
