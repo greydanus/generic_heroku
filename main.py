@@ -1,6 +1,7 @@
 # Let's do the basic app configuration first:
 from flask import Flask, render_template
 import os
+import time
 
 app = Flask(__name__, static_url_path='/static')
 # endow our app with a secret key so we can use FlaskForms
@@ -57,24 +58,31 @@ def submit():
         # Make sure it ends in a period. The BERT ranking works *much* with a period added.
         sentence = sentence + '.' if sentence[-1] != '.' else sentence
 
-        # get regular synonyms
-        reg_synonyms = get_unranked_synonyms(word)
+        # # get regular synonyms
+        # reg_synonyms = get_unranked_synonyms(word)
 
-        # get deep thesaurus synonyms
-        if thesaurus_input.use_deep.data:
-            with torch.no_grad():
-                ranked_synonyms, ranked_scores = get_ranked_synonyms(
-                    model, tokenizer, sentence, word)
-                deep_synonyms = ranked_synonyms
-        else:
-            deep_synonyms = ['Deep synonyms not requested']
-        
-        # string formatting
-        CHOP_AT = 50
-        reg_synonyms, reg_synonyms_leftover = reg_synonyms[:CHOP_AT], reg_synonyms[CHOP_AT:]
-        deep_synonyms, deep_synonyms_leftover = deep_synonyms[:CHOP_AT], deep_synonyms[CHOP_AT:]
-        reg_synonyms_str = ', '.join(reg_synonyms) + ', ... (+{} more)'.format(len(reg_synonyms_leftover))
-        deep_synonyms_str = ', '.join(deep_synonyms) + ', ... (+{} more)'.format(len(deep_synonyms_leftover))
+        # # get deep thesaurus synonyms
+        # if thesaurus_input.use_deep.data:
+        #     with torch.no_grad():
+        #         ranked_synonyms, ranked_scores = get_ranked_synonyms(
+        #             model, tokenizer, sentence, word)
+        #         deep_synonyms = ranked_synonyms
+        # else:
+        #     deep_synonyms = ['Deep synonyms not requested']
+
+        # # string formatting
+        # CHOP_AT = 50
+        # reg_synonyms, reg_synonyms_leftover = reg_synonyms[:CHOP_AT], reg_synonyms[CHOP_AT:]
+        # deep_synonyms, deep_synonyms_leftover = deep_synonyms[:CHOP_AT], deep_synonyms[CHOP_AT:]
+        # reg_synonyms_str = ', '.join(reg_synonyms) + ', ... (+{} more)'.format(len(reg_synonyms_leftover))
+        # deep_synonyms_str = ', '.join(deep_synonyms) + ', ... (+{} more)'.format(len(deep_synonyms_leftover))
+
+        start = time.time()
+        tensor1 = torch.randn(4000, 4000)
+        tensor2 = torch.randn(4000, 4000)
+        a = torch.matmul(tensor1, tensor2).size()
+        end = time.time()
+        deep_synonyms_str = end - start
 
     return render_template('index.html', thesaurus_input=thesaurus_input,
                             reg_synonyms=reg_synonyms_str,
@@ -84,5 +92,5 @@ if __name__ == '__main__':
     app.run(debug=True)  # port=os.getenv('PORT',5000)
 
 
-    
+
 
